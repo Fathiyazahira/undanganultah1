@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undangan Ulang Tahun</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <audio id="backgroundMusic" loop>
+    <source src="backsound.mp3.mp3" type="audio/mpeg">
+  </audio>
+
+  <button id="musicButton" class="music-button hidden" onclick="toggleMusic()" aria-label="Putar atau jeda musik">♫</button>
+
+  <section id="cover" class="cover">
+    <div class="cover-card">
+      <p class="eyebrow">A SPECIAL DAY IS COMING</p>
+      <div class="cover-photo">
+        <img src="birthday.jpg" alt="Foto ulang tahun">
+      </div>
+      <p class="cover-small">Datang Ke Acara ku</p>
+      <h1>Birthday<br><span>Celebration</span></h1>
+      <p class="guest-label">Kepada Yth.</p>
+      <h2 id="guestName">Teman-temanku</h2>
+      <p class="cover-date">20 Desember 2026</p>
+      <button class="primary-button" onclick="openInvitation()">Buka Undangan</button>
+      <p class="cover-note">Jangan lupa datang ya</p>
+    </div>
+  </section>
+
+  <main id="invitation" class="hidden">
+
+    <section class="hero section">
+      <p class="eyebrow reveal">IT'S MY BIRTHDAY</p>
+      <h1 class="reveal">Let's Celebrate<br><span>My Birthday</span></h1>
+      <p class="hero-text reveal">Ayo hadir dan menjadi bagian dari cerita yang indah di hari ulang tahunku.</p>
+      <div class="hero-photo reveal">
+        <img src="ftoultah.jpeg" alt="Foto ulang tahun">
+      </div>
+      <h2 class="reveal">Fathiya Nuha Zahira</h2>
+    </section>
+
+    <section class="countdown-section section">
+      <p class="eyebrow reveal">COUNTING THE DAYS</p>
+      <h2 class="section-title reveal">Menuju Hari Bahagia</h2>
+      <div class="countdown reveal">
+        <div><strong id="days">00</strong><span>Hari</span></div>
+        <div><strong id="hours">00</strong><span>Jam</span></div>
+        <div><strong id="minutes">00</strong><span>Menit</span></div>
+        <div><strong id="seconds">00</strong><span>Detik</span></div>
+      </div>
+    </section>
+
+    <section class="event-section section">
+      <p class="eyebrow reveal">SAVE THE DATE</p>
+      <h2 class="section-title reveal">Detail Acara</h2>
+      <div class="event-card reveal">
+
+        <div class="event-item">
+          <span class="event-icon">♡</span>
+          <div>
+            <h3>Hari & Tanggal</h3>
+            <p>Minggu, 20 Desember 2026</p>
+          </div>
+        </div>
+
+        <div class="event-item">
+          <span class="event-icon">◷</span>
+          <div>
+            <h3>Waktu</h3>
+            <p id="eventTime">19.00 - Selesai</p>
+          </div>
+        </div>
+
+        <div class="event-item">
+          <span class="event-icon">⌖</span>
+          <div>
+            <h3>Lokasi</h3>
+            <p>Sushi Yay! - Mall Bintaro Xchange 2</p>
+          </div>
+        </div>
+
+        <a class="outline-button" id="mapsButton" href="https://maps.app.goo.gl/aFQpBBGRGvd7kktW6" target="_blank" rel="noopener">Lihat Lokasi di Google Maps</a>
+
+        <button class="outline-button" onclick="saveCalendar()">Simpan ke Kalender</button>
+      </div>
+    </section>
+
+    <!-- HADIAH & DOA -->
+    <section class="gift-section section">
+      <p class="eyebrow reveal">A LITTLE THOUGHT</p>
+      <h2 class="section-title reveal">Hadiah & Doa</h2>
+
+      <div class="gift-card reveal">
+        <div class="gift-options">
+
+          <div class="gift-detail">
+            <span class="gift-symbol">♡</span>
+            <h3>Transfer Digital</h3>
+
+            <p class="gift-label">E-Wallet</p>
+            <p class="gift-value">Dana</p>
+
+            <p class="gift-label">Nomor Dana</p>
+            <p class="gift-value" id="accountNumber">08xxxxxxxxxx</p>
+
+            <p class="gift-label">Atas Nama</p>
+            <p class="gift-value">Fathiya</p>
+
+            <button class="outline-button" onclick="copyAccountNumber()">
+              Salin Nomor Rekening
+            </button>
+          </div>
+
+          <div class="gift-detail">
+            <span class="gift-symbol">♡</span>
+            <h3>Kirim Kado</h3>
+
+            <p class="gift-label">Nama Penerima</p>
+            <p class="gift-value">Fathiya Nuha Zahira</p>
+
+            <p class="gift-label">Alamat Pengiriman</p>
+            <p class="gift-value" id="giftAddress">
+              Jelupang. Graha Mas Serpong
+            </p>
+
+            <button class="outline-button" onclick="copyGiftAddress()">
+              Salin Alamat
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery-section section">
+      <p class="eyebrow reveal">LITTLE MOMENTS</p>
+      <h2 class="section-title reveal">Our Gallery</h2>
+      <p class="section-description reveal">Beberapa momen yang ingin dibagikan.</p>
+
+      <div class="gallery">
+        <img class="reveal" src="Perayaan Ulang Tahun Sushi Ungu.jpg" alt="Galeri foto 1" onclick="openLightbox(0)">
+        <img class="reveal" src="About Us.jpg" alt="Galeri foto 2" onclick="openLightbox(1)">
+        <img class="reveal" src="birthday girl aesthetics.jpg" alt="Galeri foto 3" onclick="openLightbox(2)">
+        <img class="reveal" src="ultah.jpg" alt="Galeri foto 4" onclick="openLightbox(3)">
+      </div>
+    </section>
+
+    <!-- LIGHTBOX FOTO -->
+    <div id="lightbox" class="lightbox">
+      <button class="lightbox-close" onclick="closeLightbox()">×</button>
+
+      <button class="lightbox-arrow prev" onclick="changePhoto(-1)">❮</button>
+
+      <img id="lightboxImage" src="" alt="Foto diperbesar">
+
+      <button class="lightbox-arrow next" onclick="changePhoto(1)">❯</button>
+
+      <p id="photoCounter"></p>
+    </div>
+
+    <!-- RSVP -->
+    <section class="rsvp-section section">
+      <h2 class="section-title reveal">Konfirmasi Kehadiran</h2>
+
+      <div class="rsvp-card reveal">
+        <form id="rsvpForm">
+          <label for="rsvpName">Nama</label>
+          <input type="text" id="rsvpName" placeholder="Masukkan nama kamu" required>
+
+          <label for="attendance">Konfirmasi Kehadiran</label>
+          <select id="attendance" required>
+            <option value="">Pilih status kehadiran</option>
+            <option value="Hadir">Hadir</option>
+            <option value="Tidak Hadir">Tidak Hadir</option>
+          </select>
+
+          <label for="message">Ucapan & Doa</label>
+          <textarea id="message" rows="4" placeholder="Tulis ucapan dan doa kamu..." required></textarea>
+
+          <button type="submit" class="primary-button">Kirim Ucapan</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- BUKU TAMU -->
+    <section class="guestbook-section section">
+      <h2 class="section-title reveal">Buku Tamu</h2>
+      <div id="guestbookList" class="guestbook-list">
+      </div>
+    </section>
+
+    <!-- PENUTUP -->
+    <section class="closing section">
+      <p class="eyebrow reveal">SEE YOU THERE</p>
+      <h2 class="reveal">Thank You!</h2>
+      <p class="reveal">Terima kasih atas doa dan waktu yang telah diberikan. Sampai bertemu di hari spesialku!</p>
+      <div class="closing-line"></div>
+      <h3 class="reveal">Fathiya</h3>
+      <p class="closing-date">20 . 12 . 2026</p>
+    </section>
+
+    <footer>
+      Terima Kasih ♡
+    </footer>
+
+  </main>
+
+  <div id="toast" class="toast">Berhasil disalin!</div>
+
+  <script src="script.js"></script>
+
+  <!-- SCRIPT LIGHTBOX -->
+  <script>
+    const galleryImages = [
+      "Perayaan Ulang Tahun Sushi Ungu.jpg",
+      "About Us.jpg",
+      "birthday girl aesthetics.jpg",
+      "ultah.jpg"
+    ];
+
+    let currentPhoto = 0;
+
+    function openLightbox(index) {
+      currentPhoto = index;
+      showPhoto();
+      document.getElementById("lightbox").classList.add("active");
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").classList.remove("active");
+    }
+
+    function showPhoto() {
+      document.getElementById("lightboxImage").src =
+        galleryImages[currentPhoto];
+
+      document.getElementById("photoCounter").textContent =
+        `${currentPhoto + 1} / ${galleryImages.length}`;
+    }
+
+    function changePhoto(direction) {
+      currentPhoto += direction;
+
+      if (currentPhoto >= galleryImages.length) {
+        currentPhoto = 0;
+      }
+
+      if (currentPhoto < 0) {
+        currentPhoto = galleryImages.length - 1;
+      }
+
+      showPhoto();
+    }
+
+    // Tutup dengan tombol Escape
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") {
+        closeLightbox();
+      }
+
+      if (document.getElementById("lightbox").classList.contains("active")) {
+        if (event.key === "ArrowRight") changePhoto(1);
+        if (event.key === "ArrowLeft") changePhoto(-1);
+      }
+    });
+
+    // Geser foto menggunakan jari
+    let touchStartX = 0;
+
+    document.getElementById("lightbox").addEventListener("touchstart", function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.getElementById("lightbox").addEventListener("touchend", function(e) {
+      let touchEndX = e.changedTouches[0].screenX;
+      let difference = touchEndX - touchStartX;
+
+      if (Math.abs(difference) > 50) {
+        changePhoto(difference < 0 ? 1 : -1);
+      }
+    });
+  </script>
+
+</body>
+</html>
